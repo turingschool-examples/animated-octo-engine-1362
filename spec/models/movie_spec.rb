@@ -27,7 +27,6 @@ RSpec.describe Movie, type: :model do
         MovieActor.create!(movie_id: toy_1.id, actor_id: reeves.id)
     
         expect(toy_1.actor_order_age).to eq([reeves, allen, hanks])
-    
       end
     end
   end

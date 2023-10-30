@@ -55,5 +55,6 @@ RSpec.describe "Show" do
     expect(current_path).to eq("/movies/#{@toy_1.id}")
     expect(page).to have_content("Chris Pratt")
     expect(Actor.average_age).to eq(39.5)
+    save_and_open_page
   end 
 end 
