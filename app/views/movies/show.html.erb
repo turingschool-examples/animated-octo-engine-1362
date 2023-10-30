@@ -1,0 +1,7 @@
+<h1>IMD-Kam</h1>
+<h2>Movie Details</h2>
+<h3>Title: <%=@movie.title%></h3>
+<p>Released in: <%=@movie.creation_year%></p>
+<p>Genre: <%=@movie.genre%></p>
+<p>Actors in this movie: <%=@movie.actors_list.join(', ')%></p>
+<p>Average age of cast members: <%=@movie.cast_age%></p>

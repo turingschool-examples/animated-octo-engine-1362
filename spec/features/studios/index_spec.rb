@@ -21,7 +21,6 @@ RSpec.describe "Studio" do
       expect(page).to have_content(@studio1.location)
       expect(page).to have_content(@studio2.name)
       expect(page).to have_content(@studio2.location)
-      save_and_open_page
     # And under each studio I see all of the studio's movies
     # including the movie's title, creation year, and genre
       expect(page).to have_content(@movie1.title)

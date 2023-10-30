@@ -1,12 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Movie, type: :model do
-    describe "relationships" do
-    it {should belong_to :studio}
-    it {should have_many :actor_movies}
-    it {should have_many(:actors).through(:actor_movies)}
-  end
-
+RSpec.describe "Movie" do
   before(:each) do
     @studio1 = Studio.create(name: "Lucasfilm", location: "Burbank, CA")
     @studio2 = Studio.create(name: "Conaco", location: "Hollywood, CA")
@@ -22,15 +16,21 @@ RSpec.describe Movie, type: :model do
     ActorMovie.create(actor: @actor2, movie: @movie3)
   end
 
-  describe "#actors_list" do
-    it "lists the actors by name who were in a movie" do
-      expect(@movie3.actors_list).to eq([@actor2.name, @actor1.name])
-    end
-  end
+  it "has a show page" do
+    # Story 2 - Movie Show
 
-  describe "#cast_age" do
-    it "averages the age of all actors on a given movie" do
-      expect(@movie3.cast_age).to eq(26)
-    end
+    # As a user,
+    # When I visit a movie's show page.
+    visit "/movies/#{@movie3.id}"
+    # I see the movie's title, creation year, and genre,
+    expect(page).to have_content("Title: #{@movie3.title}")
+    expect(page).to have_content("Released in: #{@movie3.creation_year}")
+    expect(page).to have_content("Genre: #{@movie3.genre}")
+    save_and_open_page
+    # and a list of all its actors from youngest to oldest.
+    expect(page).to have_content("Actors in this movie: #{@actor2.name}, #{@actor1.name}")
+    expect(page).to_not have_content("Meryl Streep")
+    # And I see the average age of all of the movie's actors
+    expect(page).to have_content("Average age of cast members: 26")
   end
 end

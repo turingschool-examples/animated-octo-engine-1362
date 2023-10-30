@@ -55,6 +55,8 @@ We are creating an application to track movies.
 * Movies have many actors
 * Actors can be in many movies
 
+![Alt text](image.png)
+
 You will need to create any new migrations.
 
 ## User Stories
