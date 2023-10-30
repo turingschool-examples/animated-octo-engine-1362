@@ -4,8 +4,9 @@ RSpec.describe "the studio index" do
   it "lists all the studios with their attributes" do
     universal = Studio.create!(name: "Universal Studios", location: "Los Angeles")
     a24 = Studio.create!(name: "A24", location: "New York")
-    movies = universal.movies.create!([{ title: "Star Wars", creation_year: "1979", genre: "sci-fi" }, { title: "Lord of the Rings", creation_year: "2000", genre: "fantasy" }])
-    movies = a24.movies.create!([{ title: "Hereditary", creation_year: "2017", genre: "horror" }, { title: "Swiss Army Man", creation_year: "2016", genre: "drama" }])
+    universal.movies.create!([{ title: "Star Wars", creation_year: "1979", genre: "sci-fi" }, { title: "Lord of the Rings", creation_year: "2000", genre: "fantasy" }])
+    a24.movies.create!([{ title: "Hereditary", creation_year: "2017", genre: "horror" }, { title: "Swiss Army Man", creation_year: "2016", genre: "drama" }])
+    
     visit "/studios"
 
     expect(page).to have_content(universal.name)
