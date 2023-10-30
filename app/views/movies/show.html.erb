@@ -3,7 +3,7 @@
 <%= @movie.genre %>
 <%= @movie.actor_age_avg %>
 
-<% @employee.actors_sorted.each do |actor| %>
+<% @movie.actors_sorted.each do |actor| %>
   <div id="actor-<%= actor.id %>">
     <%= actor.name %>
     <%= actor.age %>
