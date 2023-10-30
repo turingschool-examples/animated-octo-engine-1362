@@ -8,3 +8,10 @@
   <p><%= actor.name %></p>
   <p><%= actor.age %></p>
 <% end %>
+
+<h4>Add an Actor Form</h4>
+<%= form_with url: "/movies/#{@movie.id}", method: :post, data: {turbo: false} do |form| %>
+  <%= form.label :actor_id, "Actor ID:" %>
+  <%= form.text_field :actor_id %>
+  <%= form.submit "Add Actor" %>
+<% end %>

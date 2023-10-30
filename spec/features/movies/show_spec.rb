@@ -18,12 +18,15 @@ RSpec.describe "Movie Show Page", type: :feature do
     @buzz = Actor.create!(name: "Buzz", age: 8)
     @piggy = Actor.create!(name: "Piggy", age: 9)
 
+    @ryangosling = Actor.create!(name: "Ryan Gosling", age: 40)
+
     # Actors starring in a Movie
     MovieActor.create!(movie: @TS, actor: @woody)
     MovieActor.create!(movie: @TS, actor: @buzz)
     MovieActor.create!(movie: @TS, actor: @piggy)
   end
 
+  # US 2
   it "displays the movie attributes and a list of actors ordered by age" do
     visit "/movies/#{@TS.id}"
 
@@ -32,5 +35,20 @@ RSpec.describe "Movie Show Page", type: :feature do
     expect(page).to have_content("Fictional")
     expect(page).to have_content("Buzz, Piggy, Woody")
     expect(page).to have_content("Average Age: 9")
+  end
+
+  # US 3
+  it "displays a link to redirect to a form to add a new actor" do
+    visit "/movies/#{@TS.id}"
+
+    expect(page).to_not have_content("Ryan Gosling")
+
+    fill_in "actor_id", with: @ryangosling.id
+
+    click_button("Add Actor")
+
+    expect(current_path).to eq("/movies/#{@TS.id}")
+
+    expect(page).to have_content("Ryan Gosling")
   end
 end
