@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Studio.create!(name: "Universal Studios", location: "Hollywood")
+
+Movie.create!(title: "Tpy Story", creation_year: "1995", genre: "animation")
+
+Actor.create!(name: "Meryl Streep", age: 73)
