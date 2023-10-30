@@ -33,11 +33,35 @@ RSpec.describe "studios#index" do
       expect(page).to have_content(@studio_3.location)
     end
 
-    xit "under each studio it shows all the studio's movies
+    it "under each studio it shows all the studio's movies
      with title, creation_year, and genre" do
       visit "/studios"
 
-      expect(page).to have_content()
+      within("#studio_movies-#{@studio_1.id}") do
+        expect(page).to have_content(@movie_1.title)
+        expect(page).to have_content(@movie_1.creation_year)
+        expect(page).to have_content(@movie_1.genre)
+
+        expect(page).to have_content(@movie_2.title)
+        expect(page).to have_content(@movie_2.creation_year)
+        expect(page).to have_content(@movie_2.genre)
+      end
+
+      within("#studio_movies-#{@studio_2.id}") do
+        expect(page).to have_content(@movie_3.title)
+        expect(page).to have_content(@movie_3.creation_year)
+        expect(page).to have_content(@movie_3.genre)
+
+        expect(page).to have_content(@movie_4.title)
+        expect(page).to have_content(@movie_4.creation_year)
+        expect(page).to have_content(@movie_4.genre)
+      end
+
+      within("#studio_movies-#{@studio_3.id}") do
+        expect(page).to have_content(@movie_5.title)
+        expect(page).to have_content(@movie_5.creation_year)
+        expect(page).to have_content(@movie_5.genre)
+      end
     end
 
 

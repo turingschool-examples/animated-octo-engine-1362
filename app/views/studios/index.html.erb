@@ -3,4 +3,11 @@
 <% @studios.each do |studio| %>
   <%= studio.name %>
   <%= studio.location %>
+<section id="studio_movies-<%= studio.id %>">  
+  <% studio.movies.each do |movie| %>
+    <%= movie.title %>
+    <%= movie.creation_year %>
+    <%= movie.genre %>
+  <% end %>
+</section>
 <% end %>
