@@ -1,0 +1,16 @@
+<h1><%= @movie.title %></h1>
+<h2>Year: <%= @movie.creation_year %></h2>
+<h2>Genre: <%= @movie.genre %></h2>
+
+<h3>Actors</h3>
+<% @movie.actors.youngest_to_oldest.each do | actor | %>
+    <p><%= actor.name %></p>
+<% end %>
+<p>Average Age: <%= @movie.actors.average_age.round(1) %></p>
+
+<%= form_with url: "/movies/#{@movie.id}/actors", method: :post, data: {turbo: false} do |f| %>
+  <%= f.label :actor_id, "Add Actor by ID" %>
+  <%= f.text_field :actor_id %>
+
+  <%= f.submit "Add Actor" %>
+<% end %>
