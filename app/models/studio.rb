@@ -5,4 +5,5 @@ class Studio < ApplicationRecord
     movie_ids = movies.pluck(:id)
     actors_featured = Actor.joins(:movies,:movie_actors).where(movies: {id: movie_ids}).distinct
   end
+
 end

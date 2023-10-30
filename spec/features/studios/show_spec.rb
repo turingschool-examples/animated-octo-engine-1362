@@ -10,7 +10,6 @@ RSpec.describe "Studio Index Page" do
       visit "/studios/#{@studioghibli.id}"
       expect(page).to have_content(@studioghibli.name)
       expect(page).to have_content(@studioghibli.location)
-      save_and_open_page
     end
 
     it 'also includes a unique list of all the actors that have been in any of the studio movies' do

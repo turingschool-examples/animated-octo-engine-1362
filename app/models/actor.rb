@@ -6,4 +6,8 @@ class Actor < ApplicationRecord
     Actor.all.order(age: :asc)
   end
   
+  def actor_movies(studio_id)
+    movies.where(studio_id: studio_id).pluck(:title)
+  end
+
 end

@@ -7,6 +7,6 @@
 <br>
 <p><b><%= "Actors in #{@studio.name} movies: "%></b><br>
 <% @studio.actors_featured.each do |a|%>
-* <%= a.name %> | <i>Featured in: <%= a.name %> </i>
+* <%= a.name %> | <i>Featured in: <%= a.actor_movies(@studio.id).join(" & ") %> </i>
 <br>
 <% end %>
