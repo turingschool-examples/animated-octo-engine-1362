@@ -11,13 +11,6 @@ RSpec.describe "studio index", type: :feature do
     @movie_4 = Movie.create!(title: "IDK", creation_year: "1975", genre: "mystery", studio: @studio_2)
   end
 
-  # Story 1 - Studio Index
-  # As a user,
-  # When I visit the studio index page,
-  # Then I see all of the studios including name and location,
-  # And under each studio I see all of the studio's movies
-  # including the movie's title, creation year, and genre
-
   describe 'When a user visits studio index page there is some information' do
     it 'They see all studios, including name and location' do
       visit "/studios"
