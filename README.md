@@ -50,9 +50,9 @@ We are creating an application to track movies.
   * ex: title: 'Toy Story', creation_year: '1995', genre: 'animation'
 * Actors have a name and age
   * ex: name: 'Meryl Streep', age: 73
-* Studios have many movies
-* Movies belong to a studio
-* Movies have many actors
+<!-- * Studios have many movies -->
+<!-- * Movies belong to a studio -->
+<!-- * Movies have many actors -->
 * Actors can be in many movies
 
 You will need to create any new migrations.
