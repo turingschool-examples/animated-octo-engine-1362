@@ -11,6 +11,7 @@ RSpec.describe Studio, type: :feature do
   end
   describe "studio index page" do
     it "shows name and location as well as movie title, year, and genre" do
+    # User Story 1
     # As a user,
     # When I visit the studio index page,
     # Then I see all of the studios including name and location,
