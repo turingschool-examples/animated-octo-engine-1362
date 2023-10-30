@@ -53,7 +53,8 @@ RSpec.describe "Movie" do
     # Then I am redirected back to that movie's show page
     expect(current_path).to eq("/movies/#{@movie3.id}")
     # And I see the actor's name is now listed
-    expect(page).to have_content(@actor3.name)
+    visit "/movies/#{@movie3.id}"
+    expect(page).to have_content("#{@actor3.name}")
     # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
   end
 end
