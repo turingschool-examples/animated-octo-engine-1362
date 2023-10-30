@@ -16,12 +16,12 @@
 
 def test_data
   @studioghibli = Studio.create!(name: "Studio Ghibli", location: "1-1-83 Shimorenjaku, Mitaka Tokyo 181-0013")
-  @pixar = Department.create!(name: "IT", location:"1200 Park Ave, Emeryville, CA")
+  @pixar = Studio.create!(name: "Pixar Animation", location:"1200 Park Ave, Emeryville, CA")
 
-  @spiritedaway = @studioghibli.movies.create!(name: "Spirited Away", creation_year: "2001", genre: "fantasy")
-  @totoro = @studioghibli.movies.create!(name: "Totoro", creation_year: "1988", genre: "fantasy")
-  @princessmononoke = @studioghibli.movies.create!(name: "Princess Mononoke", creation_year: "1997", genre: "fantasy")
-  @monstersinc = @pixar.movies.create!(name: "Monsters Inc", creation_year: "2001", genre: "fantasy")
+  @spiritedaway = @studioghibli.movies.create!(title: "Spirited Away", creation_year: "2001", genre: "fantasy")
+  @totoro = @studioghibli.movies.create!(title: "Totoro", creation_year: "1988", genre: "fantasy")
+  @princessmononoke = @studioghibli.movies.create!(title: "Princess Mononoke", creation_year: "1997", genre: "fantasy")
+  @monstersinc = @pixar.movies.create!(title: "Monsters Inc", creation_year: "2001", genre: "fantasy")
 
   @noface = Actor.create!(name: "No Face", age: 10000)
   @mini_totoro = Actor.create!(name: "Mini Totoro", age: 200)
