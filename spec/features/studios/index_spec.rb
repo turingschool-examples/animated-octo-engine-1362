@@ -19,9 +19,8 @@ RSpec.describe "studio index", type: :feature do
   end
 
   it 'lists all of the studios, including name and location' do
-    # When I visit the studio index page,
     visit "/studios"
-    # Then I see all of the studios including name and location,
+
     expect(page).to have_content(@disney.name)
     expect(page).to have_content(@pixar.name)
     expect(page).to have_content(@universal.name)
@@ -31,23 +30,22 @@ RSpec.describe "studio index", type: :feature do
   end
   
   it 'displays each movie associated with the studio' do
-    #     And under each studio I see all of the studio's movies
-    # including the movie's title, creation year, and genre
     visit "/studios"
-    save_and_open_page
+    
     within("section#studio-#{@disney.id}") do
       expect(page).to have_content(@elemental.title)
       expect(page).to have_content(@mermaid.title)
     end 
+    
     within("section#studio-#{@pixar.id}") do
       expect(page).to have_content(@turning_red.title)
       expect(page).to have_content(@toy_story.title)
     end  
+    
     within("section#studio-#{@universal.id}") do
       expect(page).to have_content(@shrek.title)
       expect(page).to have_content(@dragon.title)
     end
-    #make within tests
   
   end
 end
