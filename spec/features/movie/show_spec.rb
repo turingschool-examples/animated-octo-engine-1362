@@ -53,6 +53,7 @@ RSpec.describe "Movie Show Page" do
             expect(page).to_not have_content(@jim_carrey.name)
             expect(page).to_not have_content(@jeff_goldblum.name)
 
+            expect(page).to have_content("Add an actor to this movie")
             fill_in :actor_id, with: @jim_carrey.id
 
             click_on "Submit"
