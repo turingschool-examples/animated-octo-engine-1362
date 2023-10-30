@@ -3,3 +3,19 @@
 <%= @movie.title %>
 <%= @movie.creation_year %>
 <%= @movie.genre %>
+
+<p> Actors: </p>
+
+<p><% @actors.each do |actor| %>
+  <li>Name: <%= actor.name %>
+  Age: <%= actor.age %></li>
+  <% end %></p>
+  <p> Actors Average Age: <%= @actors.average_age %></p>
+
+
+  <h3> Add a Actor to this Movie: </h3>
+  
+  <%= form_with url: "/movies/#{@movie.id}?actor_name=#{params[:name]}&commit=Search", method: :get do %>
+    <%= text_field_tag 'name', params[:name], placeholder: 'Enter actor name' %>
+    <%= submit_tag 'Add Actor' %>
+  <% end %>

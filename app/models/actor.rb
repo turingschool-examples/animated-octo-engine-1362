@@ -4,4 +4,8 @@ class Actor < ApplicationRecord
 
   validates :name, presence: true 
   validates :age, presence: true, numericality: true 
+
+  def self.average_age
+    average(:age).round(2)
+  end
 end
