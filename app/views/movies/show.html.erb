@@ -1,7 +1,9 @@
 <h2><%= @movie.title %></h2>
 <p><b>Studio: </b><%= @movie.studio.name %></p>
-<p><b>Creation Year: </b><%= @movie.title %></p>
-<p><b>Tickets: </b><br><% @movie.actors.sort_asc_age.each do |a|%>
+<p><b>Creation Year: </b><%= @movie.creation_year %></p>
+<p><b>Genre: </b><%= @movie.genre %></p>
+<p><b>Actors: </b><br><% @movie.actors.sort_asc_age.each do |a|%>
                        ID: <%= a.id %>  |  <%= a.name%> | Age: <%= a.age%><br>
                        <% end%>
-<p><b>Average Age of Actors:</b> <%= @movie.average_age%> years old</p>
+
+<p><b>Average Age of Actors:</b> <%= @movie.average_age %> years old 

@@ -13,16 +13,16 @@ describe '#Movie Show Page - US 2' do
     expect(page).to have_content(@totoro.genre)
   end
 
-  xit "also lists the actors from youngest to oldest" do
+  it "also lists the actors from youngest to oldest" do
     visit "/movies/#{@totoro.id}"
     expect(@sootsprite.name).to appear_before(@mini_totoro.name)
     expect(@mini_totoro.name).to appear_before(@catbus.name)
   end
 
-  xit "returns the average age of all actors separately" do
+  it "returns the average age of all actors separately" do
     visit "/movies/#{@totoro.id}"
-    average_age =  @totoro.actors.pluck(:age).average
-    expect(page).to appear_before(@mini_totoro.name)
+    average_age =  @totoro.actors.pluck(:age).sum.div(@totoro.actors.count)
+    expect(page).to have_content("Average Age of Actors: #{average_age}")
   end
 end
 
