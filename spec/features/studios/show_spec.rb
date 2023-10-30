@@ -34,10 +34,14 @@ RSpec.describe "movie show", type: :feature do
     it 'They see a unique list of all actors that have worked on any of this studios movies' do
       @movie_1.actors << @actor_1
       @movie_1.actors << @actor_2
+      @movie_2.actors << @actor_1
+      @movie_2.actors << @actor_2
       @movie_3.actors << @actor_3
       visit "studios/#{@studio_1.id}"
 
-      expect(page).to have_content("Actors: #{@actor_1.name} #{@actor_2.name}")
+      # expect(page).to have_content("Actors: #{@actor_1.name} #{@actor_2.name}")
+      expect(page).to have_content(@actor_1.name, count: 1)
+      expect(page).to have_content(@actor_2.name, count: 1)
       expect(page).to_not have_content(@actor_3.name)
     end
   end
