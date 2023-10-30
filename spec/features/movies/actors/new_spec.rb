@@ -8,7 +8,7 @@ RSpec.describe 'new movie actor page' do
     @lord = Movie.create!(title: "Lord of the Rings", creation_year: "2000", genre: "fantasy", studio_id: @universal.id)
     @hereditary = Movie.create!(title: "Hereditary", creation_year: "2017", genre: "horror", studio_id: @a24.id)
     @swiss = Movie.create!(title: "Swiss Army Man", creation_year: "2016", genre: "drama", studio_id: @a24.id)
-    @hereditary.actors.create!([{name: "Toni Collette", age: 42}, {name: "Alex Wolff", age: 27}, {name: "Alex Wolff", age: 27},  {name: "Milly Shapiro", age: 29}])
+    @hereditary.actors.create!([{name: "Toni Collette", age: 42}, {name: "Alex Wolff", age: 27}, {name: "Milly Shapiro", age: 29}])
     @swiss.actors.create!([{name: "Paul Dano", age: 32}, {name: "Daniel Radcliffe", age: 34}, {name: "Mary Elizabeth Winstead", age: 24}])
   end
 
@@ -16,7 +16,7 @@ RSpec.describe 'new movie actor page' do
     visit "/movies/#{@swiss.id}"
 
     expect(page).to_not have_content("Marika Casteel")
-    
+
     click_link("Add an actor to this movie")
     
     fill_in "name", with: "Marika Casteel"

@@ -1,0 +1,6 @@
+<h3><%= @studio.name %></h3>
+<h5><%= @studio.location %></h5>
+<h4>All Actors Who Have Been in this Studio's Movies</h4>
+<% @studio.actors.each do |actor| %>
+  <ul><li><%= actor.name %></li></ul>
+<% end %>
