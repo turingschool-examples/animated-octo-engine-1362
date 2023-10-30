@@ -12,6 +12,9 @@ RSpec.describe Studio, type: :model do
     @movie_2 = @studio_1.movies.create!(title: "Mystery Men", creation_year: "1999", genre: "action")
     @movie_3 = @studio_2.movies.create!(title: "RRR", creation_year: "2022", genre: "action")
     @movie_4 = @studio_2.movies.create!(title: "Aadhi", creation_year: "2018", genre: "thriller")
+    @actor_1 = @movie_1.actors.create!(name: "Tim Allen", age: 70)
+    @actor_2 = @movie_1.actors.create!(name: "Tom Hanks", age: 67)
+    @actor_3 = @movie_2.actors.create!(name: "Ben Stiller", age: 57)
   end
 
   describe "instance methods" do
@@ -23,7 +26,7 @@ RSpec.describe Studio, type: :model do
 
     describe "#list_actors" do
       it "returns a list of a all actors' names from the studios' movies" do
-        expect(@studio_1.list_actors).to eq("")
+        expect(@studio_1.list_actors).to eq("Tim Allen, Tom Hanks, and Ben Stiller")
       end
     end
   end
