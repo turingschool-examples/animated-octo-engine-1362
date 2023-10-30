@@ -1,0 +1,29 @@
+require "rails_helper"
+
+RSpec.describe "movie show page", type: :feature do
+  it "shows movie title, creation year, and genre" do
+    studio1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+    movie1 = studio1.movies.create!(title: "Raiders of the Lost Ark", creation_year: 1981, genre: "Action/Adventure")
+    
+    visit "/movies/#{movie1.id}"
+    
+    expect(page).to have_content("Raiders of the Lost Ark")
+    expect(page).to have_content("1981")
+    expect(page).to have_content("Action/Adventure")
+  end
+
+  it "shows all actors in the movie" do
+    studio1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+    movie1 = studio1.movies.create!(title: "Raiders of the Lost Ark", creation_year: 1981, genre: "Action/Adventure")
+    actor1 = Actor.create!(name: "Harrison Ford", age: 78)
+    actor2 = Actor.create!(name: "Karen Allen", age: 69)
+    actor3 = Actor.create!(name: "Paul Freeman", age: 79)
+
+    visit "/movies/#{movie1.id}"
+    
+    expect(page).to have_content("Karen Allen").before("Harrison Ford")
+    expect(page).to have_content("Paul Freeman").after("Harrison Ford")
+
+    expect(page).to have_content("Average Age: 75")
+  end
+end
