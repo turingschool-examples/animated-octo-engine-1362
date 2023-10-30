@@ -37,5 +37,7 @@ RSpec.describe Movie do
 
     expect(@actor5.name).to appear_before(@actor4.name)
     expect(@actor4.name).to appear_before(@actor3.name)
+
+    expect(page).to have_content(@movie4.average_actor_age)
   end
 end
