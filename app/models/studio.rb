@@ -7,6 +7,6 @@ class Studio < ApplicationRecord
 
 
   def actors_all
-    self.actors.select("actors.*").distinct
+    self.actors.distinct
   end
 end
