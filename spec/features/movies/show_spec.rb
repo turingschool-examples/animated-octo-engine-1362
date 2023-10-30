@@ -32,9 +32,9 @@ RSpec.describe "movie show", type: :feature do
     end
 
     it 'They see actors in order from youngest to oldest, and average age' do
-      @movie_1 << @actor_1
-      @movie_1 << @actor_2
-      @movie_1 << @actor_3
+      @movie_1.actors << @actor_1
+      @movie_1.actors << @actor_2
+      @movie_1.actors << @actor_3
 
       visit "movies/#{@movie_1.id}"
       expect(page).to have_content(@movie_1.actor_age_avg)
@@ -59,6 +59,8 @@ RSpec.describe "movie show", type: :feature do
       within "#actor-#{@actor_3.id}" do
         expect(page).to have_content(@actor_3.name)
         expect(page).to have_content(@actor_3.age)
+      end
     end
   end
+
 end
