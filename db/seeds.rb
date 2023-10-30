@@ -12,6 +12,12 @@ ex_machina = universal.movies.create!(title: "Ex-Machina", creation_year: 2014, 
 ralph = walt_disney.movies.create!(title: "Wreck It Ralph", creation_year: 2012, genre: "Comedy")
 frozen = walt_disney.movies.create!(title: "Frozen", creation_year: 2013, genre: "Musical Fantasy")
 
+#id of this dude is 1
+new_actor = Actor.create!(name: "Joseph Lee", age: 26)
+#id of this actress is 2
+new_actress = Actor.create!(name: "Taylor Swift", age: 28)
+
+
 mononoke_actor = mononoke.actors.create!(name: "John DiMaggio", age: 45)
 mononoke_actress = mononoke.actors.create!(name: "Claire Danes", age: 37)
 spirited_away_actor = spirited_away.actors.create!(name: "Jason Marsden", age: 40)

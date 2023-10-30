@@ -6,6 +6,8 @@ RSpec.describe Movie, type: :model do
     @mononoke = @ghibli.movies.create!(title: "Princess Mononoke", creation_year: 1997, genre: "Action")
     @mononoke_actor = @mononoke.actors.create!(name: "John DiMaggio", age: 45)
     @mononoke_actress = @mononoke.actors.create!(name: "Claire Danes", age: 37)
+    @new_actor = Actor.create!(name: "Joseph Lee", age: 26)
+    @new_actress = Actor.create!(name: "Taylor Swift", age: 28)
   end
   describe "relationships" do
     it { should belong_to :studio }
@@ -32,6 +34,23 @@ RSpec.describe Movie, type: :model do
       expect(@mononoke_actor.age).to eq(45)
       expect(@mononoke_actress.age).to eq(37)
       expect(@mononoke.average_age).to eq(41.0)
+    end
+  end
+
+  describe "#add_actor" do
+    it "adds an actor to the movie" do
+      expect(@mononoke.actors).to eq([@mononoke_actor, @mononoke_actress])
+      expect(@mononoke_actor.age).to eq(45)
+      expect(@mononoke_actress.age).to eq(37)
+      expect(@mononoke.average_age).to eq(41.0)
+
+      @mononoke.add_actor(@new_actor)
+      expect(@mononoke.actors).to eq([@mononoke_actor, @mononoke_actress, @new_actor])
+      expect(@mononoke.average_age).to eq(36.0)
+
+      @mononoke.add_actor(@new_actress)
+      expect(@mononoke.actors).to eq([@mononoke_actor, @mononoke_actress, @new_actor, @new_actress])
+      expect(@mononoke.average_age).to eq(34.0)
     end
   end
 end

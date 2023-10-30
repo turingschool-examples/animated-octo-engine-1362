@@ -1,5 +1,11 @@
 <h2><u><%= "#{@movie.title} - #{@movie.creation_year} - #{@movie.genre}" %></u></h2>
 
+<%= form_with url: "/movies/#{@movie.id}", method: :patch, local: true do |f| %>
+  <%= f.label :search %>
+  <%= f.text_field :search %>
+  <%= f.submit "Search" %>
+<% end %>
+
 <p><u>Cast</u>:</p>
 <ul>
   <% @ordered_actors.each do |actor| %>
