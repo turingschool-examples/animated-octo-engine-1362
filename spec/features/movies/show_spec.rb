@@ -47,7 +47,7 @@ RSpec.describe "Movie" do
     expect(page).to_not have_content("Meryl Streep")
     # And I see a form to add an actor to this movie
     # When I fill in the form with the ID of an actor that exists in the database
-    fill_in("Add an actor by ID:", with: @actor3.id)
+    fill_in("actor_id", with: @actor3.id)
     # And I click submit
     click_button("Submit")
     # Then I am redirected back to that movie's show page
@@ -56,5 +56,4 @@ RSpec.describe "Movie" do
     expect(page).to have_content(@actor3.name)
     # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
   end
-
 end

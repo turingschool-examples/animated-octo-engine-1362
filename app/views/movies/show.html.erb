@@ -6,7 +6,7 @@
 <p>Actors in this movie: <%=@movie.actors_list.join(', ')%></p>
 <p>Average age of cast members: <%=@movie.cast_age%></p>
 
-<%= form_with url: "/movies", method: :post, data: {turbo: false}, local: true do |form| %>
+<%= form_with url: "/movies/#{@movie.id}", method: :post, data: {turbo: false}, local: true do |form| %>
  <p> <%= form.label "Add an actor by ID:" %>
   <%= form.text_field :actor_id %>
   <%= form.submit "Submit" %></p>
