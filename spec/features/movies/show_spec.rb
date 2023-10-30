@@ -11,6 +11,7 @@ require "rails_helper"
       @hereditary.actors.create!([{name: "Toni Collette", age: 42}, {name: "Alex Wolff", age: 27}, {name: "Alex Wolff", age: 27},  {name: "Milly Shapiro", age: 29}])
       @swiss.actors.create!([{name: "Paul Dano", age: 32}, {name: "Daniel Radcliffe", age: 34}, {name: "Mary Elizabeth Winstead", age: 24}])
     end
+
     it "shows movie's attributes" do
       visit "/movies/#{@swiss.id}"
 
@@ -30,6 +31,20 @@ require "rails_helper"
     end
 
     it "show average age of all movie's actors" do
-  end
+      visit "/movies/#{@swiss.id}"
+   
+      within('section', :text =>  "Average Age of Actors") do
+        expect(page).to have_content(30)
+      end
+    end
 
-end
+    it "has a link to a form" do
+      visit "/movies/#{@swiss.id}"
+
+      expect(page).to have_link("Add an actor to this movie")
+
+      click_link("Add an actor to this movie")
+      
+      expect(current_path).to eq("/movies/#{@swiss.id}/actors/new")
+    end
+  end
