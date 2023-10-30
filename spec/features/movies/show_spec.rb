@@ -75,5 +75,47 @@ RSpec.describe Movie, type: :feature do
       
       expect(page).to have_content("Average age of actors: 60")
     end
+    
+    it "I do not see any actors that are not part of the movie" do
+      visit "/movies/#{@movie1.id}"
+      expect(page).to_not have_content("Actor 5")
+      expect(page).to_not have_content("Actor 4")
+
+      visit "/movies/#{@movie2.id}"
+      expect(page).to_not have_content("Actor 1")
+      expect(page).to_not have_content("Actor 2")
+      expect(page).to_not have_content("Actor 3")
+      expect(page).to_not have_content("Actor 6")
+
+      visit "/movies/#{@movie3.id}"
+      expect(page).to_not have_content("Actor 1")
+      expect(page).to_not have_content("Actor 2")
+      expect(page).to_not have_content("Actor 3")
+      expect(page).to_not have_content("Actor 4")
+      expect(page).to_not have_content("Actor 5")
+    end
+
+    describe "I see a form to add a actor to this movie" do
+      describe "When I fill in the form with the id of a actor that already exists in the database and I click submit" do
+        it "Then I am redirected back to that movie's show page where I see the actor's name now listed" do
+          visit "/movies/#{@movie1.id}"
+          fill_in(:add_actor, with: "#{@actor4.id}")
+          click_button("Add actor")
+          
+          expect(current_path).to eq("/movies/#{@movie1.id}")
+          expect(page).to have_content("Actor 4")
+          expect(page).to_not have_content("Actor 5")
+          
+          visit "/movies/#{@movie2.id}"
+          fill_in(:add_actor, with: "#{@actor1.id}")
+          click_button("Add actor")
+
+          expect(current_path).to eq("/movies/#{@movie2.id}")
+          expect(page).to have_content("Actor 4")
+          expect(page).to_not have_content("Actor 6")
+          expect(page).to have_content("Actor 1")
+        end
+      end
+    end
   end
 end
