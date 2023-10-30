@@ -33,7 +33,7 @@ RSpec.describe "Show" do
     expect(@allen.name).to appear_before(@hanks.name)
 
     expect(page).to have_content("Actors Average Age:")
-    expect(page).to have_content(Actor.average_age)
+    expect(Actor.average_age).to eq(41.0)
   end
 
   it "has a search feature to add new actors to movies" do 
@@ -54,5 +54,6 @@ RSpec.describe "Show" do
 
     expect(current_path).to eq("/movies/#{@toy_1.id}")
     expect(page).to have_content("Chris Pratt")
+    expect(Actor.average_age).to eq(39.5)
   end 
 end 
