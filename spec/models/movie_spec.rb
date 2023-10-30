@@ -6,3 +6,4 @@ RSpec.describe Movie, type: :model do
     it {should have_many :actors}
   end
 end
+

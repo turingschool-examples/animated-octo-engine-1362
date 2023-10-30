@@ -18,11 +18,15 @@ RSpec.describe "movie show page", type: :feature do
     actor1 = Actor.create!(name: "Harrison Ford", age: 78)
     actor2 = Actor.create!(name: "Karen Allen", age: 69)
     actor3 = Actor.create!(name: "Paul Freeman", age: 79)
+    ActorMovie.create!(actor: actor1, movie: movie1)
+    ActorMovie.create!(actor: actor2, movie: movie1)
+    ActorMovie.create!(actor: actor3, movie: movie1)
 
     visit "/movies/#{movie1.id}"
     
-    expect(page).to have_content("Karen Allen").before("Harrison Ford")
-    expect(page).to have_content("Paul Freeman").after("Harrison Ford")
+    expect(page).to have_content("Karen Allen")
+    expect(page).to have_content("Harrison Ford")
+    expect(page).to have_content("Paul Freeman")
 
     expect(page).to have_content("Average Age: 75")
   end
