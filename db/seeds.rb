@@ -14,6 +14,7 @@
 @owen = Actor.create!(name: 'Owen Wilson', age: 55)
 @sarah = Actor.create!(name: 'Sarah Silverman', age: 52)
 @chloe = Actor.create!(name: 'Chloe Coleman', age: 14)
+@john = Actor.create!(name: 'John Bradley', age: 35)
 
 MovieActor.create!(movie: @marry, actor: @jenni)
 MovieActor.create!(movie: @marry, actor: @owen)
