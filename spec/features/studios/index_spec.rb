@@ -5,7 +5,7 @@ RSpec.describe Studio, type: :feature do
     @studio1 = Studio.create!(name: "Sony", location: "Hollywood")
     @studio2 = Studio.create!(name: "Disney", location: "Orlando")
     @movie1 = @studio1.movies.create!(title: "Spiderman", creation_year: "2002", genre: "superhero")
-    @movie2 = @studio1.movies.create!(title: "Frozen", creation_year: "2013", genre: "animation")
+    @movie2 = @studio2.movies.create!(title: "Frozen", creation_year: "2013", genre: "animation")
     @movie3 = @studio2.movies.create!(title: "Up", creation_year: "2009", genre: "animation")
   end
 
@@ -26,7 +26,7 @@ RSpec.describe Studio, type: :feature do
     
     it "And underneath each studio, I see all of the studios movies, including the movies title, creation year, and genre" do
       visit "/studios"
-      
+      save_and_open_page
       within "#Sony" do
         expect(page).to have_content("Movies:")
         within "#Spiderman" do
