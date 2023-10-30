@@ -87,5 +87,5 @@ RSpec.describe "movie show", type: :feature do
       end
     end
   end
-
+  
 end
