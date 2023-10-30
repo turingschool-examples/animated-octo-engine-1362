@@ -22,6 +22,7 @@ RSpec.describe "the studio index page" do
       expect(page).to have_content(@movie_2.title)
       expect(page).to have_content(@movie_2.creation_year)
       expect(page).to have_content(@movie_2.genre)
+      expect(page).to_not have_content(@movie_3.title)
     end
   end
 end
