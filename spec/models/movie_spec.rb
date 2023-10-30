@@ -38,7 +38,12 @@ RSpec.describe Movie, type: :model do
     
     expect(@movie5.actors_by_age).to eq([@actor2.name, @actor1.name])
     expect(@movie5.average_actor_age).to eq(68.5)
-    
+  end
 
+  it "add_actor" do
+    expect(@movie1.actors).to eq([])
+
+    expect(@movie1.add_actor("#{@actor5.id}")).to eq([@actor5])
+    expect(@movie1.add_actor("#{@actor4.id}")).to eq([@actor5, @actor4])
   end
 end

@@ -40,4 +40,37 @@ RSpec.describe Movie do
 
     expect(page).to have_content(@movie4.average_actor_age)
   end
+
+  it "I see a form to add actors to a movie" do
+    @movie4.actors << @actor4
+    @movie4.actors << @actor3
+
+    visit "/movies/#{@movie4.id}"
+
+    expect(page).to have_content(@movie4.title)
+    expect(page).to have_content(@movie4.creation_year)
+    expect(page).to have_content(@movie4.genre)
+
+    expect(page).to have_content(@actor3.name)
+    expect(page).to have_content(@actor4.name)
+    
+    expect(@actor4.name).to appear_before(@actor3.name)
+
+    expect(page).to have_content(@movie4.average_actor_age)
+
+    expect(page).to have_content("Enter actor id")
+    expect(page).to have_button("Add Actor")
+
+    fill_in(:actor_id, with: "#{@actor5.id}")
+    expect(page).to_not have_content(@actor5.name)
+    click_button("Add Actor")
+
+    expect(current_path).to eq("/movies/#{@movie4.id}")
+    expect(page).to have_content(@actor5.name)
+
+    expect(@actor5.name).to appear_before(@actor4.name)
+    expect(@actor4.name).to appear_before(@actor3.name)
+
+    expect(page).to have_content(@movie4.average_actor_age)
+  end
 end

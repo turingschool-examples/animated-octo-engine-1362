@@ -10,4 +10,8 @@ class Movie < ApplicationRecord
   def average_actor_age
     actors.average(:age)
   end
+
+  def add_actor(actor_id)
+    actors << Actor.find_by(id: actor_id)
+  end
 end
