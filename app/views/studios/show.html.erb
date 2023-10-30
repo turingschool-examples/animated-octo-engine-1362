@@ -1,0 +1,7 @@
+<h2><%= @studio.name %> <br> </h2>
+<%= "Location: #{@studio.location}" %> <br>
+
+<h4>Our movies have the following actors: </h4>
+<% @studio.actors.each do |actor| %>
+  <%= actor %>
+<% end  %>
