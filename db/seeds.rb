@@ -6,8 +6,23 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Studio.create!(name: "Universal Studios", location: "Hollywood")
+studio1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+studio2 = Studio.create!(name: "Disney", location: "Orlando")
+studio3 = Studio.create!(name: "Underground", location: "New York")
 
-Movie.create!(title: "Tpy Story", creation_year: "1995", genre: "animation")
+movie1 = Movie.create!(title: "Toy Story", creation_year: "1995", genre: "animation", studio: studio1)
+movie2 = Movie.create!(title: "Django", creation_year: "2019", genre: "comedy", studio: studio3)
+movie3 = Movie.create!(title: "Mission Impossible", creation_year: "2015", genre: "action", studio: studio1)
+movie4 = Movie.create!(title: "Barbie", creation_year: "2023", genre: "comedy", studio: studio1)
+movie5 = Movie.create!(title: "Oppenheimer", creation_year: "2023", genre: "documentary", studio: studio1)
+movie6 = Movie.create!(title: "frozen", creation_year: "2012", genre: "animation", studio: studio2)
 
 Actor.create!(name: "Meryl Streep", age: 73)
+
+studio1.movies << movie1
+studio1.movies << movie3
+studio1.movies << movie4
+studio1.movies << movie5
+
+studio2.movies << movie6
+studio3.movies << movie2
