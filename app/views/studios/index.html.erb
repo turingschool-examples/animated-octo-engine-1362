@@ -1,7 +1,9 @@
 <% @studios.each do |studio| %>
-  <%= studio.name %>
-  <%= studio.location %>
-  <% studio.list_movies_details.each do |movie| %>
-    <%=  %>
-  <% end %>
+  <section id="<%= studio.id %>">
+    <%= studio.name %></br>
+    <%= studio.location %></br>
+    <% studio.list_movies_details.each do |movie_details| %>
+      <%= movie_details %></br>
+    <% end %></br>
+  </section>
 <% end %>

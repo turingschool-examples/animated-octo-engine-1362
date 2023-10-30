@@ -12,7 +12,7 @@ RSpec.describe "the department index page" do
   
   it "displays all studio name, locations, and movie details" do
     visit "/studios"
-
+save_and_open_page
     within("section##{@studio_1.id}") do
       expect(page).to have_content(@studio_1.name)
       expect(page).to have_content(@studio_1.location)
