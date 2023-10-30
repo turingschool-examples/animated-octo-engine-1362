@@ -12,4 +12,7 @@
 
 <section class= "Average Age of Actors">
   <h3>"Average Age of Actors"</h3>
-  <p>@movie.average_age</p>
+  <p> <%= @movie.average_age %></p>
+</section>
+
+<p><%= link_to "Add an actor to this movie", "/movies/#{@movie.id}/actors/new" %></p>
