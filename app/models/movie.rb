@@ -19,4 +19,11 @@ class Movie < ApplicationRecord
     average = ages.sum / ages.length.to_f.round(1)
     average
   end
+
+  def add_actor(actor)
+    if !actors.include?(actor)
+      actors << actor
+    else
+    end
+  end
 end
