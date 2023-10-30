@@ -44,18 +44,18 @@ When you run `bundle exec rspec` you should have 2 passing tests.
 
 We are creating an application to track movies.
 
-* Studios have a name and location
-  * ex: name: 'Universal Studios', location: 'Hollywood'
-* Movies have a title, creation year, and genre
+<!-- * Studios have a name and location
+  * ex: name: 'Universal Studios', location: 'Hollywood' -->
+<!-- * Movies have a title, creation year, and genre
   * ex: title: 'Toy Story', creation_year: '1995', genre: 'animation'
 * Actors have a name and age
-  * ex: name: 'Meryl Streep', age: 73
+  * ex: name: 'Meryl Streep', age: 73 -->
 <!-- * Studios have many movies -->
 <!-- * Movies belong to a studio -->
 <!-- * Movies have many actors -->
-* Actors can be in many movies
+<!-- * Actors can be in many movies
 
-You will need to create any new migrations.
+You will need to create any new migrations. -->
 
 ## User Stories
 
