@@ -19,6 +19,7 @@
 @movie_3 = @studio_2.movies.create!(title: "The Tree of Life", creation_year: 2011, genre: "drama")
 @movie_4 = @studio_2.movies.create!(title: "A Hidden Life", creation_year: 2019, genre: "drama")
 @movie_5 = @studio_3.movies.create!(title: "Stalker", creation_year: 1979, genre: "science fiction")
+@movie_6 = @studio_1.movies.create!(title: "The Untouchables", creation_year: 1987, genre: "crime noir")
 
 # Actors
 
@@ -31,3 +32,4 @@
 @movie_actor_1 = MovieActor.create!(movie: @movie_1, actor: @actor_1)
 @movie_actor_2 = MovieActor.create!(movie: @movie_1, actor: @actor_2)
 @movie_actor_3 = MovieActor.create!(movie: @movie_1, actor: @actor_3)
+@movie_actor_4 = MovieActor.create!(movie: @movie_6, actor: @actor_1)

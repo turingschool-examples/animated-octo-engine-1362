@@ -21,7 +21,7 @@ RSpec.describe "studio#show" do
     @movie_actor_1 = MovieActor.create!(movie: @movie_1, actor: @actor_1)
     @movie_actor_2 = MovieActor.create!(movie: @movie_1, actor: @actor_2)
     @movie_actor_3 = MovieActor.create!(movie: @movie_1, actor: @actor_3)
-    @movie_actor_3 = MovieActor.create!(movie: @movie_6, actor: @actor_1)
+    @movie_actor_4 = MovieActor.create!(movie: @movie_6, actor: @actor_1)
   end
     # Extension
     # Studio's Actors
