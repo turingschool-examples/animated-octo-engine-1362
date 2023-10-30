@@ -1,3 +1,10 @@
 <h1><%= @studio.name %>'s Show Page</h1>
 
 <p>Location: <%=@studio.location %></p>
+
+<p>Actors in our Pictures:</p>
+<ul>
+ <% @studio.studio_actors.each do |actor| %>
+  <li><%= actor.name %></li>
+  <% end %>
+</ul>

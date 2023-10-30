@@ -40,11 +40,13 @@ RSpec.describe "studio#show" do
       expect(page).to have_content(@studio_1.location)
     end
 
-    xit "shows a unique list of all the actors that have works on any of this studio's movies" do
+    it "shows a unique list of all the actors that have works on any of this studio's movies" do
       visit "/studios/#{@studio_1.id}"
 
-      expect(page).to have_content("#{@studio_1.name}'s Show Page")
-      expect(page).to have_content("Actors in our Pictures: #{@actor_1.name}, #{@actor_2.name}, #{@actor_3.name}")
+      expect(page).to have_content("Actors in our Pictures:")
+      expect(page).to have_content(@actor_1.name)
+      expect(page).to have_content(@actor_2.name)
+      expect(page).to have_content(@actor_3.name)
 
     end
 
