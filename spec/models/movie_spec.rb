@@ -7,6 +7,13 @@ RSpec.describe Movie, type: :model do
     it {should have_many(:actors).through(:movie_actors)}
   end
 
+  describe "validations" do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:creation_year) }
+    it { should validate_numericality_of(:creation_year) }
+    it { should validate_presence_of(:genre) }
+  end
+
   before :each do
     @studio1 = Studio.create!(name: "Sony", location: "Hollywood")
     @studio2 = Studio.create!(name: "Disney", location: "Orlando")
