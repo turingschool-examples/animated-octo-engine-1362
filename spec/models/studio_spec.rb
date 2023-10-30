@@ -19,10 +19,7 @@ RSpec.describe Studio, type: :model do
   end
 
   it "studio_movies" do
-    # @studio1.movies << @movie1
-    # @studio1.movies << @movie2
-    # @studio1.movies << @movie3
-
     expect(@studio1.studio_movies).to eq([@movie1.title, @movie3.title, @movie4.title, @movie5.title])
+    expect(@studio1.studio_movies).to_not eq([@movie2.title])
   end
 end

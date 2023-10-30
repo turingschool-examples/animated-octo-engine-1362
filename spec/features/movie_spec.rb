@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Movie, type: :model do
+RSpec.describe Movie do
   before(:each) do
     @studio1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
     @studio2 = Studio.create!(name: "Disney", location: "Orlando")
@@ -20,21 +20,22 @@ RSpec.describe Movie, type: :model do
     @actor5 = Actor.create!(name: "Margot Robbie", age: 33)
   end
 
-  describe "relationships" do
-    it {should belong_to :studio}
-    it {should have_many :actors}
-  end
-
-  it "actors_by_age" do
+  it  "Movie show page displays attributes and actors" do
     @movie4.actors << @actor5
     @movie4.actors << @actor4
     @movie4.actors << @actor3
 
-    @movie5.actors << @actor2
-    @movie5.actors << @actor1
+    visit "/movies/#{@movie4.id}"
 
-    expect(@movie4.actors_by_age).to eq([@actor5.name, @actor4.name, @actor3.name])
+    expect(page).to have_content(@movie4.title)
+    expect(page).to have_content(@movie4.creation_year)
+    expect(page).to have_content(@movie4.genre)
 
-    expect(@movie5.actors_by_age).to eq([@actor2.name, @actor1.name])
+    expect(page).to have_content(@actor3.name)
+    expect(page).to have_content(@actor4.name)
+    expect(page).to have_content(@actor5.name)
+
+    expect(@actor5.name).to appear_before(@actor4.name)
+    expect(@actor4.name).to appear_before(@actor3.name)
   end
 end

@@ -17,7 +17,11 @@ movie4 = Movie.create!(title: "Barbie", creation_year: "2023", genre: "comedy", 
 movie5 = Movie.create!(title: "Oppenheimer", creation_year: "2023", genre: "documentary", studio: studio1)
 movie6 = Movie.create!(title: "frozen", creation_year: "2012", genre: "animation", studio: studio2)
 
-Actor.create!(name: "Meryl Streep", age: 73)
+actor1 = Actor.create!(name: "Meryl Streep", age: 73)
+actor2 = Actor.create!(name: "Tom Hanks", age: 64)
+actor3 = Actor.create!(name: "Morgan Freeman", age: 82)
+actor4 = Actor.create!(name: "Jack Black", age: 56)
+actor5 = Actor.create!(name: "Margot Robbie", age: 33)
 
 studio1.movies << movie1
 studio1.movies << movie3
@@ -26,3 +30,10 @@ studio1.movies << movie5
 
 studio2.movies << movie6
 studio3.movies << movie2
+
+movie4.actors << actor5
+movie4.actors << actor4
+movie4.actors << actor3
+
+movie5.actors << actor2
+movie5.actors << actor1
