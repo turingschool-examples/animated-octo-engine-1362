@@ -7,12 +7,11 @@
   <h4>Movies:</h4>
   <% studio.movies.each do |movie| %>
     <div id="<%= movie.title %>">
-    <%= movie.title %> <br>
+    <h5><%= movie.title %> </h5>
     <%= "Year of Creation: #{movie.creation_year}" %> <br>
     <%= "Genre: #{movie.genre}" %> <br>
     </div>
   <% end %>
   </div>
-  <br>
   <br>
 <% end %>

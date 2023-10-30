@@ -7,9 +7,9 @@
 <% @movie.actors_youngest_to_oldest.each do |actor| %>
   <%= actor %>
 <% end %>
-
+<br><br>
 <%= "Average age of actors: #{@movie.average_age_of_actors}" %>
-
+<br><br>
 <%= form_with url: "/movies/#{@movie.id}", method: :patch, local: :true do |f| %>
   <%= f.text_field :add_actor %>
   <%= f.submit "Add actor" %>
