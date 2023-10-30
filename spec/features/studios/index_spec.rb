@@ -26,7 +26,6 @@ RSpec.describe Studio, type: :feature do
     
     it "And underneath each studio, I see all of the studios movies, including the movies title, creation year, and genre" do
       visit "/studios"
-      save_and_open_page
       within "#Sony" do
         expect(page).to have_content("Movies:")
         within "#Spiderman" do
