@@ -13,5 +13,7 @@
 @mario = @universal.movies.create!({ title: "The Super Mario Bros. Movie", creation_year: "2023", genre: "Adventure/Comedy"})
 @tom = Actor.create!({ name: "Tom Cruise", age: 61})
 @jennifer = Actor.create!({ name: "Jennifer Connelly", age: 52})
+@kate = Actor.create!({ name: "Kate Winslet", age: 48})
+@miles = Actor.create!({ name: "Miles Teller", age: 36})
 ActorMovie.create!({ movie_id: @tg_maveric.id, actor_id: @tom.id})
 ActorMovie.create!({ movie_id: @tg_maveric.id, actor_id: @jennifer.id})

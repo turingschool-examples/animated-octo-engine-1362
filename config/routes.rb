@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/studios", to: "studios#index"
-
   get "/movies/:id", to: "movies#show"
+  patch "/movies/:id/actor_movies", to: "actor_movies#create"
 end
