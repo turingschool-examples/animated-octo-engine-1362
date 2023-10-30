@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "the studio index page" do
+RSpec.describe "the movie show page" do
   before (:each) do
     @studio_1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
     @studio_2 = Studio.create!(name: "Ramoji Film City", location: "India")
@@ -8,20 +8,19 @@ RSpec.describe "the studio index page" do
     @movie_2 = @studio_1.movies.create!(title: "Mystery Men", creation_year: "1999", genre: "action")
     @movie_3 = @studio_2.movies.create!(title: "RRR", creation_year: "2022", genre: "action")
     @movie_4 = @studio_2.movies.create!(title: "Aadhi", creation_year: "2018", genre: "thriller")
+    @actor_1 = @movie_1.actors.create!(name: "Tim Allen", age: 70)
+    @actor_2 = @movie_1.actors.create!(name: "Tom Hanks", age: 67)
+    @actor_3 = @movie_2.actors.create!(name: "Ben Stiller", age: 57)
   end
   
   it "displays all studio name, locations, and movie details" do
-    visit "/studios"
+    visit "/movies/#{@movie_1.id}"
 
-    within("section##{@studio_1.id}") do
-      expect(page).to have_content(@studio_1.name)
-      expect(page).to have_content(@studio_1.location)
-      expect(page).to have_content(@movie_1.title)
-      expect(page).to have_content(@movie_1.creation_year)
-      expect(page).to have_content(@movie_1.genre)
-      expect(page).to have_content(@movie_2.title)
-      expect(page).to have_content(@movie_2.creation_year)
-      expect(page).to have_content(@movie_2.genre)
-    end
+    expect(page).to have_content(@movie_1.title)
+    expect(page).to have_content(@movie_1.creation_year)
+    expect(page).to have_content(@movie_1.genre)
+    expect(page).to have_content(@actor_1.name)
+    expect(page).to have_content(@actor_2.name)
+    expect(page).to have_content("Average Actor Age: 68.5 years")
   end
 end
