@@ -15,6 +15,7 @@ RSpec.describe 'Movies show page' do
     @allison_williams = Actor.create(name: "Allison Williams",  age: 35)
     @billy_eichner = Actor.create(name: "Billy Eichner",  age: 45)
     @luke_macfarlane = Actor.create(name: "Luke Macfarlane", age: 43)
+    @ryan_faucett = Actor.create(name: "Ryan Faucett", age: 38)
     @andy_samberg = Actor.create(name: "Andy Samberg",  age: 45)
   
     ActorMovie.create(actor_id: @billy_eichner.id, movie_id: @bros.id)
@@ -35,6 +36,22 @@ RSpec.describe 'Movies show page' do
       
       expect(page).to have_text(/.*Luke Macfarlane.*Billy Eichner.*/)
       expect(page).to have_content("Average Age of Actors: 44")
+    end
+  end
+
+  describe "When I visit a movie's show page" do
+    it 'displays displays a form to add an actor' do
+      visit "/movies/#{@bros.id}"
+      expect(page).to have_content("Add Actor by ID:")
+      
+    end
+    it 'when i fill in form with actor ID and click submit, im taken back to the show page with the new actor added' do
+      visit "/movies/#{@bros.id}"
+      save_and_open_page
+      fill_in "Add Actor by ID:", with: "#{@ryan_faucett.id}"
+      click_button "Add Actor"
+      expect(current_path).to eq("/movies/#{@bros.id}")
+      expect(page).to have_content("Ryan Faucett")
     end
   end
 end

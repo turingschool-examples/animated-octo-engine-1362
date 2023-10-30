@@ -10,3 +10,9 @@
 </ul>
 
 <p>Average Age of Actors: <%= @average_age %></p>
+
+<p><%= form_for @movies do |f| %>
+  <%= f.label :actor_id, "Add Actor by ID:" %>
+  <%= f.text_field :actor_id %>
+  <%= f.submit "Add Actor" %>
+<% end %></p>
