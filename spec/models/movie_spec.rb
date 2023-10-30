@@ -33,4 +33,12 @@ RSpec.describe Movie, type: :model do
       expect(query).to eq([@cillian_murphy, @christian_bale, @morgan_freeman])
     end
   end
+
+  describe "#average_age" do
+    it "give the average age of actors" do
+      query = @the_dark_knight.average_age
+    
+      expect(query).to eq(60)
+    end
+  end
 end

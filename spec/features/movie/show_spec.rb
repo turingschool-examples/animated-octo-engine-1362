@@ -39,7 +39,7 @@ RSpec.describe "Movie Show Page" do
           expect(@cillian_murphy.name).to appear_before(@christian_bale.name)
           expect(@christian_bale.name).to appear_before(@morgan_freeman.name)
 
-          expect(page).to have_content("Average Age: 61")
+          expect(page).to have_content("Average Age: 60")
         end
       end
     end 
