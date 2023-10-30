@@ -29,4 +29,16 @@ RSpec.describe "the movie show page" do
     expect(@actor_2.name).to appear_before(@actor_1.name)
     expect(page).to have_content("Average Actor Age: 68.5 years")
   end
+
+  it "allows an actor to be added to the movie by submitting the actor's id" do
+    visit "/movies/#{@movie_1.id}"
+
+    expect(page).to_not have_content(@actor_3.name)
+    
+    fill_in "actor_id", with: "#{@actor_3.id}"
+    click_button "submit"
+
+    expect(current_path).to eq("/movies/#{@movie_1.id}")
+    expect(page).to have_content(@actor_3.name)
+  end
 end
