@@ -43,7 +43,6 @@ RSpec.describe "studio show", type: :feature do
 
   it 'shows a list of the actors associated with the studio' do 
     visit "/studios/#{@disney.id}"
-    save_and_open_page
     expect(page).to have_content(@actor1.name)
     expect(page).to have_content(@actor2.name)
     expect(page).to have_content(@actor3.name)
