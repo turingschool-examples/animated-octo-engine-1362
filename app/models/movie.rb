@@ -3,6 +3,10 @@ class Movie < ApplicationRecord
   has_many :actor_movies
   has_many :actors, through: :actor_movies
 
+  validates :title, presence: true
+  validates :creation_year, presence: true
+  validates :genre, presence: true
+
   def actors_sorted
     self.actors.order(:age)
   end
