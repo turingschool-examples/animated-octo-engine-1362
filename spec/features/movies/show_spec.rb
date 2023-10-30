@@ -76,9 +76,16 @@ RSpec.describe "movies#show" do
       expect(page).to have_button("Add Actor")
     end
 
-    xit "when I fill in the form with the ID of an actor that exists in the database and
+    it "when I fill in the form with the ID of an actor that exists in the database and
     click submit I am redirected to that movie's show page and it shows the actors name now listed" do
       visit "/movies/#{@movie_1.id}"
+
+      fill_in(:actor_id, with: "#{@actor_4.id}")
+      click_button("Add Actor")
+
+      expect(page).to have_current_path("/movies/#{@movie_1.id}")
+
+      expect(page).to have_content(@actor_4.name)
 
     end
   end
