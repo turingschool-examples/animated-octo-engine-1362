@@ -1,0 +1,10 @@
+<h1><%= @movie.title %> Show Page </h1>
+<p><%=  @movie.creation_year%></p>
+<p><%=  @movie.genre%></p>
+<p><%= @movie.actors.ordered_by_age.join(", ") %></p>
+<p>Average Age: <%= @movie.actors.average_age %>
+
+<% @movie.actors.each do |actor| %>
+  <p><%= actor.name %></p>
+  <p><%= actor.age %></p>
+<% end %>
