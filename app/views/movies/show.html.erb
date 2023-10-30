@@ -1,0 +1,30 @@
+<h1><%= @movie.title %></h1>
+<p>Creation Year: <%= @movie.creation_year %></p>
+<p>Genre: <%= @movie.genre %></p>
+
+<br>
+
+<%= form_with(model: @movie, url: url_for(controller: 'movies', action: 'add_actor', id: @movie), method: :post, local: true, turbo: :false) do |form| %>
+  <%= form.label :actor_id, 'Add Actor by ID' %>
+  <%= form.text_field :actor_id %>
+  <%= form.submit 'Add Actor' %>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
+
+<br>
+
+<h2>Actors:</h2>
+<ul>
+  <% @actors.each do |actor| %>
+    <li><%= actor.name %> (Age: <%= actor.age %>)</li>
+  <% end %>
+</ul>
+
+<br>
+
+<p>Average Age of Actors: <%= @average_age %></p>
+
