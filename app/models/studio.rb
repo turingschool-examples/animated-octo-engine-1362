@@ -10,6 +10,6 @@ class Studio < ApplicationRecord
   end
 
   def list_actors
-    movies.joins(:actors).pluck(:name).to_sentence
+    movies.joins(:actors).distinct.pluck(:name).to_sentence
   end
 end

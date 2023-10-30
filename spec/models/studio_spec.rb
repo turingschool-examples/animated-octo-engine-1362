@@ -26,7 +26,7 @@ RSpec.describe Studio, type: :model do
 
     describe "#list_actors" do
       it "returns a list of a all actors' names from the studios' movies" do
-        expect(@studio_1.list_actors).to eq("Tim Allen, Tom Hanks, and Ben Stiller")
+        expect(@studio_1.list_actors).to eq("Ben Stiller, Tim Allen, and Tom Hanks")
       end
     end
   end

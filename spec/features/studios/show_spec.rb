@@ -11,6 +11,7 @@ RSpec.describe "the studio show page" do
     @actor_1 = @movie_1.actors.create!(name: "Tim Allen", age: 70)
     @actor_2 = @movie_1.actors.create!(name: "Tom Hanks", age: 67)
     @actor_3 = @movie_2.actors.create!(name: "Ben Stiller", age: 57)
+    @actor_4 = @movie_3.actors.create!(name: "N.T. Rama Rao Jr.", age: 40)
   end
   
   it "displays the studio's name and location" do
@@ -22,9 +23,10 @@ RSpec.describe "the studio show page" do
 
   it "displays a unique list of all actors that have worked on the studio's movies" do
     visit "/studios/#{@studio_1.id}"
-
+save_and_open_page
     expect(page).to have_content(@actor_1.name)
     expect(page).to have_content(@actor_2.name)
-    expect(page).to_not have_content(@actor_3.name)
+    expect(page).to have_content(@actor_3.name)
+    expect(page).to_not have_content(@actor_4.name)
   end
 end
