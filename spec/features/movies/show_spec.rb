@@ -22,6 +22,7 @@ RSpec.describe "Movie" do
     # As a user,
     # When I visit a movie's show page.
     visit "/movies/#{@movie3.id}"
+    save_and_open_page
     # I see the movie's title, creation year, and genre,
     expect(page).to have_content("Title: #{@movie3.title}")
     expect(page).to have_content("Released in: #{@movie3.creation_year}")
@@ -30,7 +31,30 @@ RSpec.describe "Movie" do
     # and a list of all its actors from youngest to oldest.
     expect(page).to have_content("Actors in this movie: #{@actor2.name}, #{@actor1.name}")
     expect(page).to_not have_content("Meryl Streep")
+  
     # And I see the average age of all of the movie's actors
     expect(page).to have_content("Average age of cast members: 26")
   end
+
+  it "can add actors to movies" do
+    # Story 3
+    # Add an Actor to a Movie
+
+    # As a user,
+    # When I visit a movie show page,
+    visit "/movies/#{@movie3.id}"
+    # I do not see any actors listed that are not part of the movie
+    expect(page).to_not have_content("Meryl Streep")
+    # And I see a form to add an actor to this movie
+    # When I fill in the form with the ID of an actor that exists in the database
+    fill_in("Add an actor by ID:", with: @actor3.id)
+    # And I click submit
+    click_button("Submit")
+    # Then I am redirected back to that movie's show page
+    expect(current_path).to eq("/movies/#{@movie3.id}")
+    # And I see the actor's name is now listed
+    expect(page).to have_content(@actor3.name)
+    # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
+  end
+
 end
