@@ -9,3 +9,11 @@
     <%= actor.age %>
   </div>
 <% end %>
+
+<%= form_with url: "/movies/#{@movie.id}/actors", method: :post, data: { turbo: false } do |f| %>
+  <%= f.label :actor %>
+  <%= f.text_field :actor %>
+
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+  <%= f.submit "Add Actor" %>
+<% end %>
