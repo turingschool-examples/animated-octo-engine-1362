@@ -71,22 +71,39 @@ RSpec.describe "Movie Show Page" do
       jaws_actor_2 = MovieActor.create!({actor_id: richard.id, movie_id: jaws.id})
       jaws_actor_3 = MovieActor.create!({actor_id: robert.id, movie_id: jaws.id})
 
+      visit "/movies/#{jaws.id}"
+
       expect("Richard Dreyfuss").to appear_before("Roy Scheider")
       expect("Roy Scheider").to appear_before("Robert Shaw")
 
     end
 
-    it "has a form to add an actor to a movie" do 
+    it "has a form to add an actor to a movie" do
 
-      visit "/movies/#{movie.id}"
+      paramount = Studio.create!({name: "Paramount Pictures", location: "Hollywood"})
+      jaws = paramount.movies.create({title: "Jaws", creation_year: "1976", genre: "Action"})
+      
+      roy = Actor.create!({name: "Roy Scheider", age: 36})
+      richard = Actor.create!({name: "Richard Dreyfuss", age: 28})
+      robert = Actor.create!({name: "Robert Shaw", age: 61})
+      lorraine = Actor.create!({name: "Lorraine Gary", age: 38})
+
+      jaws_actor_1 = MovieActor.create!({actor_id: roy.id, movie_id: jaws.id})
+      jaws_actor_2 = MovieActor.create!({actor_id: richard.id, movie_id: jaws.id})
+      jaws_actor_3 = MovieActor.create!({actor_id: robert.id, movie_id: jaws.id})
+
+      visit "/movies/#{jaws.id}"
 
       expect(page).to have_content("Add Actor")
       expect(page).to have_field(:actor_id)
       expect(page).to have_button("Add Actor")
 
+      fill_in(:actor_id, with: lorraine.id)
+
       click_button("Add Actor")
 
-      expect(current_path).to eq("/movies/#{movie.id}")
+      expect(current_path).to eq("/movies/#{jaws.id}")
+      expect(page).to have_content("Lorraine Gary, age: 38")
     end
 
 end 
