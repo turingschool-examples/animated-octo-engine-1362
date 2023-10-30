@@ -27,7 +27,6 @@ RSpec.describe "Movie Show Page" do
   end
 
   describe '#Viewing the Movie Show Page - US 3' do
-
     it 'does not list any actors not in the viewed movie' do
       visit "/movies/#{@totoro.id}"
       expect(page).to_not have_content(@noface.name)
@@ -48,4 +47,5 @@ RSpec.describe "Movie Show Page" do
       expect(page).to have_content(@baby_totoro.id)
     end
   end
+
 end
