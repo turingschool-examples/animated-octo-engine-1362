@@ -14,13 +14,6 @@ RSpec.describe "movie show", type: :feature do
     @actor_2 = Actor.create!(name: "Max", age: 33)
     @actor_3 = Actor.create!(name: "Ben", age: 30)
   end
-    # Story 2 - Movie Show
-
-    # As a user,
-    # When I visit a movie's show page.
-    # I see the movie's title, creation year, and genre,
-    # and a list of all its actors from youngest to oldest.
-    # And I see the average age of all of the movie's actors
 
   describe 'When a user visits a movies show page, there is information' do
     it 'They see the movies title, creation year and genre' do
@@ -43,8 +36,8 @@ RSpec.describe "movie show", type: :feature do
       mid = find("#actor-#{@actor_1.id}")
       youngest = find("#actor-#{@actor_3.id}")
 
-      expect(oldest).to appear_before(mid)
-      expect(mid).to appear_before(youngest)
+      expect(youngest).to appear_before(mid)
+      expect(mid).to appear_before(oldest)
 
       within "#actor-#{@actor_1.id}" do
         expect(page).to have_content(@actor_1.name)
