@@ -6,7 +6,6 @@ class Studio < ApplicationRecord
   end
 
   def contributing_actors
-    acts = Actor.joins(:movies).where(movies: {id: movies}).distinct.pluck(:name)
-
+    Actor.joins(:movies).where(movies: {id: movies}).distinct.pluck(:name)
   end
 end
