@@ -33,16 +33,18 @@ RSpec.describe "studio index", type: :feature do
       end
     end
 
-    it 'They see a list of each movie from each studio' do
+    it 'They see a list of each movie from each studio with its titale, creation year, and genre' do
       visit "/studios"
 
       within "#studio-#{@studio_1.id}" do
-        expect(page).to have_content("Employees: #{@movie_1.name} #{@movie_2.name}")
+        expect(page).to have_content("#{@movie_1.title}, created: #{@movie_1.creation_year}, genre: #{@movie_1.genre}")
+        expect(page).to have_content("#{@movie_2.title}, created: #{@movie_2.creation_year}, genre: #{@movie_2.genre}")
       end
 
       within "#studio-#{@studio_2.id}" do
-        expect(page).to have_content("Employees: #{@movie_3.name} #{@movie_4.name}")
-      end
+      expect(page).to have_content("#{@movie_3.title}, created: #{@movie_3.creation_year}, genre: #{@movie_3.genre}")
+      expect(page).to have_content("#{@movie_4.title}, created: #{@movie_4.creation_year}, genre: #{@movie_4.genre}")
+    end
     end
   end
 
