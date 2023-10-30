@@ -28,6 +28,7 @@ def test_data
   @sootsprite = Actor.create!(name: "Soot Sprite", age: 2)
   @catbus = Actor.create!(name: "Cat Bus", age: 400)
   @mike = Actor.create!(name: "Mike Wazowski", age: 40)
+  @baby_totoro = Actor.create!(name: "Baby Totoro", age: 140)
 
   MovieActor.create!(movie: @spiritedaway, actor: @noface)
   MovieActor.create!(movie: @spiritedaway, actor: @sootsprite)

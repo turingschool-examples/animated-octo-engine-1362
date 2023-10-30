@@ -27,26 +27,23 @@ RSpec.describe "Movie Show Page" do
   end
 
   describe '#Viewing the Movie Show Page - US 3' do
-    before :each do
-      @baby_totoro = Actor.create!(name: "Baby Totoro", age: 140)
-    end
 
     it 'does not list any actors not in the viewed movie' do
       visit "/movies/#{@totoro.id}"
       expect(page).to_not have_content(@noface.name)
     end
 
-    xit 'has a form submission for a new actor that already exists in the database' do
+    it 'has a form submission for a new actor that already exists in the database' do
       visit "/movies/#{@totoro.id}"
       fill_in "Add Existing Actor", with: @baby_totoro.id
       click_button "Submit"
     end
 
-    xit 'after submission, returns to same page with new actor listed' do
+    it 'after submission, returns to same page with new actor listed' do
       visit "/movies/#{@totoro.id}"
       fill_in "Add Existing Actor", with: @baby_totoro.id
       click_button "Submit"
-      click_button "Add #{@baby_totoro.id}"
+      click_button "Add ##{@baby_totoro.id}"
       expect(current_path).to eq("/movies/#{@totoro.id}")
       expect(page).to have_content(@baby_totoro.id)
     end

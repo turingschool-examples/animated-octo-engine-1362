@@ -7,3 +7,18 @@
                        <% end%>
 
 <p><b>Average Age of Actors:</b> <%= @movie.average_age %> years old 
+
+<h3>Add an Existing Actor to Movie by ID</h3>
+  <%= form_with url: "/movies/#{@movie.id}", method: :get, data: { turbo: false } do |form| %>
+    <%= form.hidden_field :search, value: "actor" %>
+    <%= form.label :actor_id, "Add Existing Actor" %>
+    <%= form.text_field :actor_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
+
+  <% if !@search_actors.nil? && @search_actors.any? %>
+  <% @search_actors.each do |actor| %>
+  <p><b>ID: <%= actor.id %>  |  <%= actor.name%> | Age: <%= actor.age%><br>
+  <%= button_to "Add ##{actor.id}", {controller: "movie_actor", action: "create", movie_id: @movie.id, actor_id: actor.id}, method: :post%>
+  <% end %>
+<% end %>
