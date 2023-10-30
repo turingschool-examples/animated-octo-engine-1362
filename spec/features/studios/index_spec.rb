@@ -63,8 +63,5 @@ RSpec.describe "studios#index" do
         expect(page).to have_content(@movie_5.genre)
       end
     end
-
-
   end
-
 end
