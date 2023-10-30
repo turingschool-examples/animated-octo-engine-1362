@@ -22,6 +22,10 @@ RSpec.describe "studio show", type: :feature do
     @elemental.actors << @actor3
     @elemental.actors << @actor4
     @elemental.actors << @actor5
+    @elemental.actors << @actor6
+    @elemental.actors << @actor7
+    @elemental.actors << @actor8
+    @elemental.actors << @actor9
     @mermaid.actors << @actor5
     @mermaid.actors << @actor6
     @mermaid.actors << @actor7
