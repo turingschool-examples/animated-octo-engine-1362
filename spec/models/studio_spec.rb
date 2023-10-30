@@ -20,5 +20,11 @@ RSpec.describe Studio, type: :model do
         expect(@studio_1.list_movies_details).to eq(["Toy Story, 1995, animation", "Mystery Men, 1999, action"])
       end
     end
+
+    describe "#list_actors" do
+      it "returns a list of a all actors' names from the studios' movies" do
+        expect(@studio_1.list_actors).to eq("")
+      end
+    end
   end
 end

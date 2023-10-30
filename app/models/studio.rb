@@ -8,4 +8,8 @@ class Studio < ApplicationRecord
       movie.join(", ")
     end
   end
+
+  def list_actors
+    
+  end
 end
