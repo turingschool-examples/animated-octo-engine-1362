@@ -42,6 +42,26 @@ RSpec.describe "Movie Show Page" do
           expect(page).to have_content("Average Age: 60")
         end
       end
+
+      #User Story 3
+      describe "I do not see any actors listed that are not part of the movie and I see a form to add an actor to this movie" do
+        describe "When I fill in the form with an ID of an actor and click submit" do
+          it "I am redirected back to the movie's show page and I see the new actors name lised" do
+
+            visit "/movies/#{@the_dark_knight.id}"
+
+            expect(page).to_not have_content(@jim_carrey.name)
+            expect(page).to_not have_content(@jeff_goldblum.name)
+
+            fill_in :actor_id, with: @jim_carrey.id
+
+            click_on "Submit"
+
+            expect(current_path).to eq("/movies/#{@the_dark_knight.id}")
+            expect(page).to have_content(@jim_carrey.name)
+          end
+        end
+      end
     end 
   end 
 end 
