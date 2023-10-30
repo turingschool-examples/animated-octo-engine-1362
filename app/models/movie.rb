@@ -6,4 +6,8 @@ class Movie < ApplicationRecord
   def list_actors
     actors.order(:age).pluck(:name).to_sentence
   end
+
+  def ave_actor_age
+    actors.average(:age).to_s
+  end
 end
