@@ -5,8 +5,9 @@
 Average Actor Age: <%= @movie.ave_actor_age %> years
 
 Add an Actor
-<%= form_with url: "/movies/#{@movie.id}/actor/#{params[:actor_id]}", method: :post, local: true do |form| %>
+<%= form_with method: :post, local: true do |form| %>
   <%= form.label :actor_id %>
   <%= form.number_field :actor_id %>
+  <%= form.hidden_field(:value => params[:actor_id]) %>
   <%= form.submit "submit" %>
 <% end %>

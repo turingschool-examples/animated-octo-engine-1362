@@ -1,6 +1,6 @@
 class ActorMoviesController < ApplicationController
   def create
-    movie = Movie.find(params[:movie_id])
+    movie = Movie.find(params[:id])
     actor = Actor.find(params[:actor_id])
 
     actor_movie = ActorMovie.create!({
