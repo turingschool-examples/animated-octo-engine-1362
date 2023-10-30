@@ -19,13 +19,13 @@ RSpec.describe Studio, type: :model do
 
   describe "instance methods" do
     describe "#list_movies_details" do
-      it "returns a list of a studios's employees and their details" do
+      it "returns a array of a studio's movies and their details" do
         expect(@studio_1.list_movies_details).to eq(["Toy Story, 1995, animation", "Mystery Men, 1999, action"])
       end
     end
 
     describe "#list_actors" do
-      it "returns a list of a all actors' names from the studios' movies" do
+      it "returns a string of all actors' names from the studio's movies" do
         expect(@studio_1.list_actors).to eq("Ben Stiller, Tim Allen, and Tom Hanks")
       end
     end

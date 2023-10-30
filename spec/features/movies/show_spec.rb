@@ -13,7 +13,7 @@ RSpec.describe "the movie show page" do
     @actor_3 = @movie_2.actors.create!(name: "Ben Stiller", age: 57)
   end
   
-  it "displays all studio name, locations, and movie details" do
+  it "displays the movie title, creation year, genre, and actors for the movie" do
     visit "/movies/#{@movie_1.id}"
 
     expect(page).to have_content(@movie_1.title)

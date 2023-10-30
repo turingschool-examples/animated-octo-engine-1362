@@ -10,7 +10,7 @@ RSpec.describe "the studio index page" do
     @movie_4 = @studio_2.movies.create!(title: "Aadhi", creation_year: "2018", genre: "thriller")
   end
   
-  it "displays all studio name, locations, and movie details" do
+  it "displays all studio names, locations, and movie details" do
     visit "/studios"
 
     within("section##{@studio_1.id}") do
