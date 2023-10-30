@@ -10,6 +10,7 @@ RSpec.describe '/movies/:id' do
     @owen = Actor.create!(name: 'Owen Wilson', age: 55)
     @sarah = Actor.create!(name: 'Sarah Silverman', age: 52)
     @chloe = Actor.create!(name: 'Chloe Coleman', age: 14)
+    @john = Actor.create!(name: 'John Bradley', age: 35)
 
     MovieActor.create!(movie: @marry, actor: @jenni)
     MovieActor.create!(movie: @marry, actor: @owen)
@@ -39,6 +40,18 @@ RSpec.describe '/movies/:id' do
         visit "/movies/#{@marry.id}"
 
         expect(page).to have_content('Average Actors Age: 44')
+      end
+
+      it 'add existing actors to movie show page' do
+        visit "/movies/#{@marry.id}"
+        expect(page).to_not have_content(@john.name)
+
+        fill_in("Actor ID", with: @john.id)
+
+        click_button("Submit")
+
+        expect(current_path).to eq("/movies/#{@marry.id}")
+        expect(page).to have_content(@john.name)
       end
     end
   end
