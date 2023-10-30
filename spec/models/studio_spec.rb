@@ -13,7 +13,13 @@ RSpec.describe Studio, type: :model do
     @movie5 = Movie.create!(title: "Oppenheimer", creation_year: "2023", genre: "documentary", studio: @studio1)
     @movie6 = Movie.create!(title: "frozen", creation_year: "2012", genre: "animation", studio: @studio2)
 
+    @actor1 = Actor.create!(name: "Meryl Streep", age: 73)
+    @actor2 = Actor.create!(name: "Tom Hanks", age: 64)
+    @actor3 = Actor.create!(name: "Morgan Freeman", age: 82)
+    @actor4 = Actor.create!(name: "Jack Black", age: 56)
+    @actor5 = Actor.create!(name: "Margot Robbie", age: 33)
   end
+
   describe "relationships" do
     it {should have_many :movies}
   end
@@ -21,5 +27,18 @@ RSpec.describe Studio, type: :model do
   it "studio_movies" do
     expect(@studio1.studio_movies).to eq([@movie1.title, @movie3.title, @movie4.title, @movie5.title])
     expect(@studio1.studio_movies).to_not eq([@movie2.title])
+  end
+
+  it "contributing_actors" do
+    @movie4.actors << @actor5
+    @movie4.actors << @actor4
+    @movie4.actors << @actor3
+
+    expect(@studio1.contributing_actors).to eq([@actor4.name, @actor5.name, @actor3.name])
+    
+    @movie5.actors << @actor2
+    @movie5.actors << @actor1
+
+    expect(@studio1.contributing_actors).to eq([@actor4.name, @actor5.name, @actor1.name, @actor3.name, @actor2.name])
   end
 end

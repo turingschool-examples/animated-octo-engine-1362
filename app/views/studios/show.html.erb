@@ -1,0 +1,9 @@
+<h1><%= @studio.name %></h1>
+<h3><%= @studio.location %></h3>
+
+<div id="cont_act">
+  <h3>Contributing Actors</h3>
+  <% @studio.contributing_actors.each do |a| %>
+    <li><%= a %></li> <br>
+  <% end %>
+</div>

@@ -13,6 +13,11 @@ RSpec.describe Studio do
     @movie5 = Movie.create!(title: "Oppenheimer", creation_year: "2023", genre: "documentary", studio: @studio1)
     @movie6 = Movie.create!(title: "frozen", creation_year: "2012", genre: "animation", studio: @studio2)
 
+    @actor1 = Actor.create!(name: "Meryl Streep", age: 73)
+    @actor2 = Actor.create!(name: "Tom Hanks", age: 64)
+    @actor3 = Actor.create!(name: "Morgan Freeman", age: 82)
+    @actor4 = Actor.create!(name: "Jack Black", age: 56)
+    @actor5 = Actor.create!(name: "Margot Robbie", age: 33)
   end
 
   it 'Creates studio index' do
@@ -32,5 +37,29 @@ RSpec.describe Studio do
     expect(page).to have_content(@studio3.name)
     expect(page).to have_content(@studio3.location)
     expect(page).to have_content(@movie2.title)
+  end
+
+  it 'When I visit a studio show page I see attributes and list of all actors' do
+    @movie4.actors << @actor5
+    @movie4.actors << @actor4
+    @movie4.actors << @actor3
+
+    @movie5.actors << @actor2
+    @movie5.actors << @actor1
+
+    visit "/studios/#{@studio1.id}"
+
+    expect(page).to have_content(@studio1.name)
+    expect(page).to have_content(@studio1.location)
+
+    expect(page).to have_content("Contributing Actors")
+
+    within("div#cont_act") do
+      expect(page).to have_content(@actor1.name)
+      expect(page).to have_content(@actor2.name)
+      expect(page).to have_content(@actor3.name)
+      expect(page).to have_content(@actor4.name)
+      expect(page).to have_content(@actor5.name)
+    end 
   end
 end
