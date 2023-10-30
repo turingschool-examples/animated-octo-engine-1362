@@ -11,3 +11,7 @@
 @titanic = @paramount.movies.create!({ title: "Titanic", creation_year: "1997", genre: "Disaster"})
 @jurassic_world = @universal.movies.create!({ title: "Jurassic World", creation_year: "2015", genre: "Sci-fi/Action"})
 @mario = @universal.movies.create!({ title: "The Super Mario Bros. Movie", creation_year: "2023", genre: "Adventure/Comedy"})
+@tom = Actor.create!({ name: "Tom Cruise", age: 61})
+@jennifer = Actor.create!({ name: "Jennifer Connelly", age: 52})
+ActorMovie.create!({ movie_id: @tg_maveric.id, actor_id: @tom.id})
+ActorMovie.create!({ movie_id: @tg_maveric.id, actor_id: @jennifer.id})
