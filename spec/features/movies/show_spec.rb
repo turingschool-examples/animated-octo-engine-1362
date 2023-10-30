@@ -56,4 +56,36 @@ RSpec.describe "movie show", type: :feature do
     end
   end
 
+  describe 'When a user visits movie show page, they can add an actor' do
+    it 'They do not see any actors not part of this movie' do
+      @movie_1.actors << @actor_1
+      visit "/movies/#{@movie_1.id}"
+
+      expect(page).to have_content(@actor_1.name)
+      expect(page).to_not have_content(@actor_2.name)
+      expect(page).to_not have_content(@actor_3.name)
+    end
+
+    it 'They see a form to add an actor to this movie (by id)' do
+      visit "/movies/#{@movie_1.id}"
+
+      expect(page).to have_selector(:link_or_button, "Add Actor")
+    end
+
+    it "They fill in the form with a actor id, clicks button, redirects back to show page, and see actor name" do
+      visit "/movies/#{@movie_1.id}"
+      expect(page).to_not have_content(@actor_1.name)
+      
+      visit "/movies/#{@movie_1.id}"
+      fill_in("Actor", with: @actor_1.id)
+      click_button("Add Actor")
+
+      expect(current_path).to eq("/movies/#{@movie_1.id}")
+      
+      within "#actor-#{@actor_1.id}" do
+        expect(page).to have_content(@actor_1.name)
+      end
+    end
+  end
+
 end
