@@ -7,6 +7,10 @@ class Movie < ApplicationRecord
   validates :creation_year, presence: true, numericality: true
   validates :genre, presence: true
 
+  def concat_movie_details
+    "#{title} - #{creation_year} - #{genre}"
+  end
+
   def order_actors
     actors.order(:age)
   end

@@ -3,6 +3,6 @@
 <% @studios.each do |studio| %>
   <h2><u><%= "#{studio.name} - #{studio.location}"%></u></h2>
   <% studio.movies.each do |movie| %>
-    <li><%= "#{movie.title} - #{movie.creation_year} - #{movie.genre}" %></li>
+    <li><%= movie.concat_movie_details %></li>
   <% end %>
 <% end %>
