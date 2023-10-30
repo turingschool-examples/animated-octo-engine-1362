@@ -10,4 +10,8 @@ class Movie < ApplicationRecord
   def avg_age
     actors.average(:age).to_f.round(2)
   end
+
+  def self.search(search_params)
+    where("name ILIKE ?", "%#{search_params}%")
+  end
 end
