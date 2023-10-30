@@ -99,6 +99,7 @@ RSpec.describe Movie, type: :feature do
       describe "When I fill in the form with the id of a actor that already exists in the database and I click submit" do
         it "Then I am redirected back to that movie's show page where I see the actor's name now listed" do
           visit "/movies/#{@movie1.id}"
+          expect(page).to_not have_content("Actor 4")
           fill_in(:add_actor, with: "#{@actor4.id}")
           click_button("Add actor")
           
@@ -107,6 +108,7 @@ RSpec.describe Movie, type: :feature do
           expect(page).to_not have_content("Actor 5")
           
           visit "/movies/#{@movie2.id}"
+          expect(page).to_not have_content("Actor 1")
           fill_in(:add_actor, with: "#{@actor1.id}")
           click_button("Add actor")
 

@@ -9,3 +9,8 @@
 <% end %>
 
 <%= "Average age of actors: #{@movie.average_age_of_actors}" %>
+
+<%= form_with url: "/movies/#{@movie.id}", method: :patch, local: :true do |f| %>
+  <%= f.text_field :add_actor %>
+  <%= f.submit "Add actor" %>
+<% end %>
