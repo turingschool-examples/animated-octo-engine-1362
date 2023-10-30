@@ -3,6 +3,6 @@ class Studio < ApplicationRecord
   has_many :actors, through: :movies
 
   def actor_list
-    actors.distinct.pluck(:name)
+    actors.distinct.pluck(:name).join(", ")
   end
 end
