@@ -10,9 +10,10 @@ RSpec.describe "Studio Index Page" do
       visit "/studios/#{@studioghibli.id}"
       expect(page).to have_content(@studioghibli.name)
       expect(page).to have_content(@studioghibli.location)
+      save_and_open_page
     end
 
-    xit 'also includes a unique list of all the actors that have been in any of the studio movies' do
+    it 'also includes a unique list of all the actors that have been in any of the studio movies' do
       visit "/studios/#{@studioghibli.id}"
       studio_actors = []
       @studioghibli.movies.each{|movie| studio_actors << movie.actors}

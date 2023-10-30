@@ -1,0 +1,12 @@
+<h2><%= @studio.name %></h2>
+<p><b>Location: </b><%= @studio.location %></p>
+<p><b>Movies: </b><br><% @studio.movies.each do |m|%>
+                      <%= link_to "#{m.title}", "/movies/#{m.id}" %> | 
+                      <%= m.creation_year %> | Genre: <%= m.genre %>  <br>  
+                      <% end%>
+<br>
+<p><b><%= "Actors in #{@studio.name} movies: "%></b><br>
+<% @studio.actors_featured.each do |a|%>
+* <%= a.name %> | <i>Featured in: <%= a.name %> </i>
+<br>
+<% end %>
