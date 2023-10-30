@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    @actor = Actor.find(params[:actor_id]
+    @actor = Actor.find(params[:actor_id])
     @movie.actors << @actor
   end
 end
