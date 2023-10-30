@@ -5,5 +5,10 @@ class MoviesController < ApplicationController
     @actors = @movie.actor_sort
     @avg_age = @movie.avg_age
   end
+
+  def new
+
+  end
+  
   
 end

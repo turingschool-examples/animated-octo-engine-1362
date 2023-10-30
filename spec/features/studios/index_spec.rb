@@ -33,11 +33,7 @@ RSpec.describe "Studio Index Page" do
     kong = universal.movies.create({title: "King Kong", creation_year: "1936", genre: "Action"})
 
     visit "/studios"
-
-    # expect(paramount).to appear_before(jaws)
-    # expect(mgm).to appear_before(kane)
-    # expect(universal).to appear_before(kong)
-
+    
     expect(page).to have_content("Title: Jaws")
     expect(page).to have_content("Year: 1976")
     expect(page).to have_content("Genre: Action")

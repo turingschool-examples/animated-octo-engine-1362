@@ -17,21 +17,14 @@ RSpec.describe "Movie Show Page" do
 
     paramount = Studio.create!({name: "Paramount Pictures", location: "Hollywood"})
     jaws = paramount.movies.create({title: "Jaws", creation_year: "1976", genre: "Action"})
-
-    mgm = Studio.create!({name: "MGM", location: "Burbank"})
-    kane = mgm.movies.create({title: "Citizen Kane", creation_year: "1942", genre: "Drama"})
-
+    
     roy = Actor.create!({name: "Roy Scheider", age: 36})
     richard = Actor.create!({name: "Richard Dreyfuss", age: 28})
     robert = Actor.create!({name: "Robert Shaw", age: 61})
-    orson = Actor.create!({name: "Orson Welles", age: 34})
 
     jaws_actor_1 = MovieActor.create!({actor_id: roy.id, movie_id: jaws.id})
     jaws_actor_2 = MovieActor.create!({actor_id: richard.id, movie_id: jaws.id})
     jaws_actor_3 = MovieActor.create!({actor_id: robert.id, movie_id: jaws.id})
-    
-    ck_actor_1 = MovieActor.create!({actor_id: orson.id, movie_id: kane.index})
-
 
     visit "/movies/#{jaws.id}"
 
@@ -41,13 +34,59 @@ RSpec.describe "Movie Show Page" do
     expect(page).to have_content("Robert Shaw, age: 61")
 
     expect(page).to have_content("Average Age of Actors: 41.7")
-
-    save_and_open_page
-
   end
 
   it "shows only the actors that are in that particular movie" do 
+
+    paramount = Studio.create!({name: "Paramount Pictures", location: "Hollywood"})
+    jaws = paramount.movies.create({title: "Jaws", creation_year: "1976", genre: "Action"})
+
+    mgm = Studio.create!({name: "MGM", location: "Burbank"})
+    kane = mgm.movies.create({title: "Citizen Kane", creation_year: "1942", genre: "Drama"})
+
+    roy = Actor.create!({name: "Roy Scheider", age: 36})
+    richard = Actor.create!({name: "Richard Dreyfuss", age: 28})
+    robert = Actor.create!({name: "Robert Shaw", age: 61})
+
+    orson = Actor.create!({name: "Orson Welles", age: 34})
+
+    jaws_actor_1 = MovieActor.create!({actor_id: roy.id, movie_id: jaws.id})
+    ck_actor_1 = MovieActor.create!({actor_id: orson.id, movie_id: kane.id})
+
+    visit "/movies/#{jaws.id}"
+
+    expect(page).to_not have_content("Title: Citizen Kane")
     expect(page).to_not have_content("Orson Welles, age: 34")
   end
-  
+
+    it "sorts actors by age" do 
+      paramount = Studio.create!({name: "Paramount Pictures", location: "Hollywood"})
+      jaws = paramount.movies.create({title: "Jaws", creation_year: "1976", genre: "Action"})
+      
+      roy = Actor.create!({name: "Roy Scheider", age: 36})
+      richard = Actor.create!({name: "Richard Dreyfuss", age: 28})
+      robert = Actor.create!({name: "Robert Shaw", age: 61})
+
+      jaws_actor_1 = MovieActor.create!({actor_id: roy.id, movie_id: jaws.id})
+      jaws_actor_2 = MovieActor.create!({actor_id: richard.id, movie_id: jaws.id})
+      jaws_actor_3 = MovieActor.create!({actor_id: robert.id, movie_id: jaws.id})
+
+      expect("Richard Dreyfuss").to appear_before("Roy Scheider")
+      expect("Roy Scheider").to appear_before("Robert Shaw")
+
+    end
+
+    it "has a form to add an actor to a movie" do 
+
+      visit "/movies/#{movie.id}"
+
+      expect(page).to have_content("Add Actor")
+      expect(page).to have_field(:actor_id)
+      expect(page).to have_button("Add Actor")
+
+      click_button("Add Actor")
+
+      expect(current_path).to eq("/movies/#{movie.id}")
+    end
+
 end 

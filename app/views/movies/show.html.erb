@@ -8,3 +8,11 @@
   <p><%= "#{actor.name}, age: #{actor.age}" %></p>
 <% end%>
 <p><%= "Average Age of Actors: #{@avg_age}" %></p>
+
+<h1>Add Actor</h1>
+<%= form_with url: "/movies/#{@movie.id}/actors/newr", data: {turbo: false}, local: true do |f| %>
+  <%= f.label "Add Actor" %>
+  <%= f.text_field :actor_id %>
+  <%= f.submit "Add Actor" %>
+<% end %>
+
