@@ -4,6 +4,7 @@ RSpec.describe Studio, type: :model do
   describe "relationships" do
     it {should have_many :movies}
     it {should have_many(:movie_actors).through(:movies)}
+    it {should have_many(:actors).through(:movie_actors)}
   end
 
   describe "instance methods" do
